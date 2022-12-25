@@ -1,6 +1,7 @@
 from typing import Optional, Tuple
 
 from .datasets import medical
+from merlin.dataloader.torch import DLDataLoader
 from pytorch_lightning import LightningDataModule
 import torch
 from torch.utils.data import DataLoader, Dataset
@@ -50,7 +51,7 @@ class GlaSDataModule(LightningDataModule):
                 transform = 'default' if self.augment else medical.ToTensor()
             )
 
-        return DataLoader(
+        return DLDataLoader(
             dataset = self.data_train,
             batch_size = self.batch_size,
             num_workers = self.num_workers,
@@ -67,7 +68,7 @@ class GlaSDataModule(LightningDataModule):
                 transform = medical.ToTensor()
             )
 
-        return DataLoader(
+        return DLDataLoader(
             dataset = self.data_val,
             batch_size = self.batch_size,
             num_workers = self.num_workers,

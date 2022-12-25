@@ -1,6 +1,7 @@
 from typing import Optional, Tuple
 
 import fgvcdata
+from merlin.dataloader.torch import DLDataLoader
 from pytorch_lightning import LightningDataModule
 from torch.utils.data import DataLoader, Dataset
 from torchvision.datasets import CIFAR10, CIFAR100
@@ -53,7 +54,7 @@ class _BaseDataModule(LightningDataModule):
         pass
 
     def train_dataloader(self):
-        return DataLoader(
+        return DLDataLoader(
             dataset = self.data_train,
             batch_size = self.batch_size,
             num_workers = self.num_workers,
@@ -63,7 +64,7 @@ class _BaseDataModule(LightningDataModule):
         )
 
     def val_dataloader(self):
-        return DataLoader(
+        return DLDataLoader(
             dataset = self.data_val,
             batch_size = self.batch_size,
             num_workers = self.num_workers,

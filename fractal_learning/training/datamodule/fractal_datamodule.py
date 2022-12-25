@@ -1,5 +1,6 @@
 from typing import Callable, Optional, Tuple
 
+from merlin.dataloader.torch import DLDataLoader
 from pytorch_lightning import LightningDataModule
 import torch
 from torch.utils.data import DataLoader, Dataset
@@ -80,7 +81,7 @@ class FractalClassDataModule(LightningDataModule):
     def train_dataloader(self):
         if self.data_train is None:
             self.setup()
-        return DataLoader(
+        return DLDataLoader(
             dataset=self.data_train,
             batch_size=self.batch_size,
             num_workers=self.num_workers,
@@ -92,7 +93,7 @@ class FractalClassDataModule(LightningDataModule):
     def val_dataloader(self):
         if self.data_val is None:
             self.setup()
-        return DataLoader(
+        return DLDataLoader(
             dataset=self.data_val,
             batch_size=self.batch_size,
             num_workers=self.num_workers,
@@ -163,7 +164,7 @@ class MultiLabelFractalDataModule(LightningDataModule):
     def train_dataloader(self):
         if self.data_train is None:
             self.setup()
-        return DataLoader(
+        return DLDataLoader(
             dataset=self.data_train,
             batch_size=self.batch_size,
             num_workers=self.num_workers,
@@ -176,7 +177,7 @@ class MultiLabelFractalDataModule(LightningDataModule):
     def val_dataloader(self):
         if self.data_val is None:
             self.setup()
-        return DataLoader(
+        return DLDataLoader(
             dataset=self.data_val,
             batch_size=self.batch_size,
             num_workers=self.num_workers,
@@ -259,7 +260,7 @@ class SelfSupervisedFractalDataModule(LightningDataModule):
     def train_dataloader(self):
         if self.data_train is None:
             self.setup()
-        return DataLoader(
+        return DLDataLoader(
             dataset=self.data_train,
             batch_size=self.batch_size,
             num_workers=self.num_workers,
@@ -271,7 +272,7 @@ class SelfSupervisedFractalDataModule(LightningDataModule):
     def val_dataloader(self):
         if self.data_val is None:
             self.setup()
-        return DataLoader(
+        return DLDataLoader(
             dataset=self.data_val,
             batch_size=self.batch_size,
             num_workers=self.num_workers,
